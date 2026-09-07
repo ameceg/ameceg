@@ -7,7 +7,7 @@ import sharp from "sharp";
 
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
-import { Announcements } from "./collections/Announcement";
+import { Announcements } from "./collections/Announcements";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);

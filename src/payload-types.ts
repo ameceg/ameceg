@@ -171,6 +171,7 @@ export interface Media {
 export interface Announcement {
   id: number;
   title: string;
+  slug: string;
   content: {
     root: {
       type: string;
@@ -186,6 +187,7 @@ export interface Announcement {
     };
     [k: string]: unknown;
   };
+  author?: (number | null) | User;
   publishedDate: string;
   isPublished?: boolean | null;
   featuredImage?: (number | null) | Media;
@@ -317,7 +319,9 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface AnnouncementsSelect<T extends boolean = true> {
   title?: T;
+  slug?: T;
   content?: T;
+  author?: T;
   publishedDate?: T;
   isPublished?: T;
   featuredImage?: T;
