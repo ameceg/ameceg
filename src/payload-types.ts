@@ -71,6 +71,8 @@ export interface Config {
     media: Media;
     announcements: Announcement;
     events: Event;
+    'office-bearers': OfficeBearer;
+    members: Member;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +84,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     announcements: AnnouncementsSelect<false> | AnnouncementsSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
+    'office-bearers': OfficeBearersSelect<false> | OfficeBearersSelect<true>;
+    members: MembersSelect<false> | MembersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -230,6 +234,73 @@ export interface Event {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "office-bearers".
+ */
+export interface OfficeBearer {
+  id: number;
+  member: number | Member;
+  position:
+    | 'president'
+    | 'treasurer'
+    | 'general-secretary-male'
+    | 'general-secretary-female'
+    | 'joint-secretary-male'
+    | 'joint-secretary-female'
+    | 'joint-secretary-pg'
+    | 'assistant-secretary-male'
+    | 'assistant-secretary-female'
+    | 'domain-head'
+    | 'junior-head'
+    | 'sub-junior-head';
+  /**
+   * Required for Domain Head, Junior Head, and Sub-Junior Head positions.
+   */
+  domain?: string | null;
+  /**
+   * Format: YYYY-YY, e.g. 2026-27
+   */
+  academicYear: string;
+  displayOrder: number;
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "members".
+ */
+export interface Member {
+  id: number;
+  name: string;
+  photo: number | Media;
+  bio?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  isActive?: boolean | null;
+  socialLinks?:
+    | {
+        platform: 'linkedin' | 'instagram' | 'github' | 'x' | 'facebook' | 'youtube' | 'other';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -267,6 +338,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'events';
         value: number | Event;
+      } | null)
+    | ({
+        relationTo: 'office-bearers';
+        value: number | OfficeBearer;
+      } | null)
+    | ({
+        relationTo: 'members';
+        value: number | Member;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -380,6 +459,39 @@ export interface EventsSelect<T extends boolean = true> {
   author?: T;
   isPublished?: T;
   featuredImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "office-bearers_select".
+ */
+export interface OfficeBearersSelect<T extends boolean = true> {
+  member?: T;
+  position?: T;
+  domain?: T;
+  academicYear?: T;
+  displayOrder?: T;
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "members_select".
+ */
+export interface MembersSelect<T extends boolean = true> {
+  name?: T;
+  photo?: T;
+  bio?: T;
+  isActive?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
