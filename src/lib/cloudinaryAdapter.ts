@@ -1,8 +1,33 @@
+import type {
+  CollectionConfig,
+  FileData,
+  PayloadRequest,
+  TypeWithID,
+} from "payload";
 import cloudinary from "./cloudinary";
 
 type AdapterArgs = {
-  collection: any;
+  collection: CollectionConfig;
   prefix?: string;
+};
+
+type UploadFile = {
+  buffer: Buffer;
+  filename: string;
+  filesize: number;
+  mimeType: string;
+};
+
+type CloudinaryMediaData = FileData &
+  TypeWithID & {
+    cloudinaryPublicId?: string | null;
+    cloudinaryResourceType?: string | null;
+  };
+
+type CloudinaryUploadResult = {
+  public_id: string;
+  resource_type: string;
+  secure_url: string;
 };
 
 export const cloudinaryAdapter = ({ prefix }: AdapterArgs) => ({
@@ -12,47 +37,45 @@ export const cloudinaryAdapter = ({ prefix }: AdapterArgs) => ({
     {
       name: "cloudinaryPublicId",
       type: "text" as const,
-      admin :{
-        hidden : true,
+      admin: {
+        hidden: true,
       },
     },
     {
       name: "cloudinaryResourceType",
       type: "text" as const,
-      admin :{
-        hidden :true, 
+      admin: {
+        hidden: true,
       },
     },
   ],
 
-  async handleUpload({
-    file,
-  }: {
-    file: {
-      buffer: Buffer;
-      filename: string;
-      filesize: number;
-      mimeType: string;
-    };
-  }) {
-    const result = await new Promise<any>((resolve, reject) => {
-      const uploadStream = cloudinary.uploader.upload_stream(
-        {
-          folder: prefix || "ameceg",
-          resource_type: "auto",
-        },
-        (error, result) => {
-          if (error) {
-            reject(error);
-            return;
-          }
+  async handleUpload({ file }: { file: UploadFile }) {
+    const result = await new Promise<CloudinaryUploadResult>(
+      (resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          {
+            folder: prefix || "ameceg",
+            resource_type: "auto",
+          },
+          (error, result) => {
+            if (error) {
+              reject(error);
+              return;
+            }
 
-          resolve(result);
-        },
-      );
+            if (!result) {
+              reject(new Error("Cloudinary upload returned no result"));
+              return;
+            }
 
-      uploadStream.end(file.buffer);
-    });
+            resolve(result);
+          },
+        );
+
+        uploadStream.end(file.buffer);
+      },
+    );
 
     return {
       cloudinaryPublicId: result.public_id,
@@ -61,7 +84,14 @@ export const cloudinaryAdapter = ({ prefix }: AdapterArgs) => ({
     };
   },
 
-  async handleDelete({ doc }: { doc: any }) {
+  async handleDelete({
+    doc,
+  }: {
+    collection: CollectionConfig;
+    doc: CloudinaryMediaData;
+    filename: string;
+    req: PayloadRequest;
+  }) {
     if (!doc.cloudinaryPublicId) return;
 
     await cloudinary.uploader.destroy(doc.cloudinaryPublicId, {
@@ -75,8 +105,19 @@ export const cloudinaryAdapter = ({ prefix }: AdapterArgs) => ({
     });
   },
 
-  generateURL({ data }: { data: any; filename: string; prefix?: string }) {
+  generateURL({
+    data,
+  }: {
+    collection: CollectionConfig;
+    data: CloudinaryMediaData;
+    filename: string;
+    prefix?: string;
+  }) {
     if (!data.cloudinaryPublicId) {
+      if (!data.url) {
+        throw new Error("Media URL is missing");
+      }
+
       return data.url;
     }
 
@@ -90,7 +131,22 @@ export const cloudinaryAdapter = ({ prefix }: AdapterArgs) => ({
     });
   },
 
-  staticHandler() {
+  staticHandler(
+    _req: PayloadRequest,
+    _args: {
+      doc?: TypeWithID;
+      headers?: Headers;
+      params: {
+        clientUploadContext?: unknown;
+        collection: string;
+        filename: string;
+        prefix?: string;
+      };
+    },
+  ) {
+    void _req;
+    void _args;
+
     return new Response("Not Found", { status: 404 });
   },
 });
