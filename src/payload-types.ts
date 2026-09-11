@@ -74,6 +74,8 @@ export interface Config {
     'office-bearers': OfficeBearer;
     members: Member;
     contact: Contact;
+    domains: Domain;
+    'committee-members': CommitteeMember;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -88,6 +90,8 @@ export interface Config {
     'office-bearers': OfficeBearersSelect<false> | OfficeBearersSelect<true>;
     members: MembersSelect<false> | MembersSelect<true>;
     contact: ContactSelect<false> | ContactSelect<true>;
+    domains: DomainsSelect<false> | DomainsSelect<true>;
+    'committee-members': CommitteeMembersSelect<false> | CommitteeMembersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -253,13 +257,8 @@ export interface OfficeBearer {
     | 'joint-secretary-pg'
     | 'assistant-secretary-male'
     | 'assistant-secretary-female'
-    | 'domain-head'
-    | 'junior-head'
-    | 'sub-junior-head';
-  /**
-   * Required for Domain Head, Junior Head, and Sub-Junior Head positions.
-   */
-  domain?: string | null;
+    | 'student-treasurer'
+    | 'events-secretary';
   /**
    * Format: YYYY-YY, e.g. 2026-27
    */
@@ -320,6 +319,42 @@ export interface Contact {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "domains".
+ */
+export interface Domain {
+  id: number;
+  name: string;
+  /**
+   * URL-friendly identifier, e.g. website-and-magazine
+   */
+  slug: string;
+  /**
+   * Short description of the domain.
+   */
+  description?: string | null;
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "committee-members".
+ */
+export interface CommitteeMember {
+  id: number;
+  member: number | Member;
+  domain: number | Domain;
+  position: 'head' | 'junior-head' | 'sub-junior-head';
+  /**
+   * Format: YYYY-YY, e.g. 2026-27
+   */
+  academicYear: string;
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -369,6 +404,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'contact';
         value: number | Contact;
+      } | null)
+    | ({
+        relationTo: 'domains';
+        value: number | Domain;
+      } | null)
+    | ({
+        relationTo: 'committee-members';
+        value: number | CommitteeMember;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -494,7 +537,6 @@ export interface EventsSelect<T extends boolean = true> {
 export interface OfficeBearersSelect<T extends boolean = true> {
   member?: T;
   position?: T;
-  domain?: T;
   academicYear?: T;
   displayOrder?: T;
   isActive?: T;
@@ -531,6 +573,31 @@ export interface ContactSelect<T extends boolean = true> {
   subject?: T;
   message?: T;
   status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "domains_select".
+ */
+export interface DomainsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  description?: T;
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "committee-members_select".
+ */
+export interface CommitteeMembersSelect<T extends boolean = true> {
+  member?: T;
+  domain?: T;
+  position?: T;
+  academicYear?: T;
+  isActive?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -1,11 +1,12 @@
 import { isAdminOrEditor } from "@/access";
 import type { CollectionConfig, Validate } from "payload";
 
-export const OfficeBearers: CollectionConfig = {
-  slug: "office-bearers",
+export const CommitteeMembers: CollectionConfig = {
+  slug: "committee-members",
 
   admin: {
     useAsTitle: "member",
+    defaultColumns: ["member", "domain", "position", "academicYear", "isActive"],
   },
 
   access: {
@@ -33,51 +34,28 @@ export const OfficeBearers: CollectionConfig = {
     },
 
     {
+      name: "domain",
+      type: "relationship",
+      relationTo: "domains",
+      required: true,
+    },
+
+    {
       name: "position",
       type: "select",
       required: true,
       options: [
-        { label: "President", value: "president" },
-        { label: "Treasurer", value: "treasurer" },
-
         {
-          label: "General Secretary - Male",
-          value: "general-secretary-male",
+          label: "Head",
+          value: "head",
         },
         {
-          label: "General Secretary - Female",
-          value: "general-secretary-female",
-        },
-
-        {
-          label: "Joint Secretary - Male",
-          value: "joint-secretary-male",
+          label: "Junior Head",
+          value: "junior-head",
         },
         {
-          label: "Joint Secretary - Female",
-          value: "joint-secretary-female",
-        },
-        {
-          label: "Joint Secretary - PG",
-          value: "joint-secretary-pg",
-        },
-
-        {
-          label: "Assistant Secretary - Male",
-          value: "assistant-secretary-male",
-        },
-        {
-          label: "Assistant Secretary - Female",
-          value: "assistant-secretary-female",
-        },
-
-        {
-          label: "Student Treasurer",
-          value: "student-treasurer",
-        },
-        {
-          label: "Events Secretary",
-          value: "events-secretary",
+          label: "Sub-Junior Head",
+          value: "sub-junior-head",
         },
       ],
     },
@@ -108,16 +86,12 @@ export const OfficeBearers: CollectionConfig = {
     },
 
     {
-      name: "displayOrder",
-      type: "number",
-      required: true,
-      min: 1,
-    },
-
-    {
       name: "isActive",
       type: "checkbox",
       defaultValue: true,
+      admin: {
+        position: "sidebar",
+      },
     },
   ],
 };
