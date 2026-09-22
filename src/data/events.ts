@@ -56,6 +56,6 @@ export const flagshipEvent = {
   image: '/images/placeholder-flagship.svg',
   cta: {
     label: 'Register interest',
-    href: '#contact',
+    href: '/contact',
   },
 }

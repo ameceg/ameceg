@@ -36,7 +36,7 @@ export default buildConfig({
     Members,
     Contact,
     Domains,
-    CommitteeMembers
+    CommitteeMembers,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
@@ -55,6 +55,7 @@ export default buildConfig({
         media: {
           adapter: cloudinaryAdapter,
           disableLocalStorage: true,
+          disablePayloadAccessControl: true,
         },
       },
     }),

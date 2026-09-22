@@ -21,10 +21,10 @@ export const siteConfig = {
   nav: [
     { label: 'Home', href: '#hero' },
     { label: 'About', href: '#about' },
-    { label: 'Events', href: '#events' },
-    { label: 'Team', href: '#team' },
+    { label: 'Events', href: '/events' },
+    { label: 'Team', href: '/team' },
     { label: 'Manusys', href: 'https://manusys.ame.example', external: true },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Contact', href: '/contact' },
   ] satisfies NavItem[],
   socials: [
     { label: 'LinkedIn', href: 'https://linkedin.com' },
