@@ -145,7 +145,7 @@ export function RecentEvents() {
                 </h3>
                 <div className="flex flex-col items-center gap-5">
                   <a
-                    href="#events"
+                    href="/events"
                     className="group inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-primary px-8 py-4 font-black shadow-xl transition-all duration-200 sm:hover:scale-105 sm:hover:shadow-2xl"
                   >
                     <span className="text-[15px] text-primary-foreground">Explore all events</span>
@@ -155,7 +155,7 @@ export function RecentEvents() {
                     />
                   </a>
                   <a
-                    href="#contact"
+                    href="/contact"
                     className="inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-xl border border-foreground/25 bg-background px-8 py-4 font-black text-foreground transition-all duration-200 sm:hover:scale-105 sm:hover:border-foreground"
                   >
                     <span className="text-[15px]">Host an event</span>

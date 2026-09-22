@@ -43,7 +43,7 @@ export function Footer() {
               for engineers.
             </h2>
             <a
-              href="#contact"
+              href="/contact"
               className="group inline-flex w-fit items-center gap-2 rounded-full bg-gradient-to-r from-primary to-[#4038c8] px-6 py-3 text-sm font-bold text-white transition-transform duration-200 hover:scale-105 md:px-9 md:py-3.5 md:text-base"
             >
               <span className="whitespace-nowrap">Contact us</span>
