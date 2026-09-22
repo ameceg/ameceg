@@ -131,7 +131,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-6 flex flex-col items-center justify-between gap-2 text-sm text-foreground/70 sm:mt-8 md:flex-row">
+        <div className="relative mt-6 flex flex-col items-center justify-between gap-2 text-sm text-foreground/70 sm:mt-8 md:flex-row">
           <div className="flex flex-wrap justify-center gap-4">
             <a
               href="#hero"
@@ -146,6 +146,26 @@ export function Footer() {
               Terms &amp; conditions
             </a>
           </div>
+
+          <div className="flex items-center justify-center gap-2 md:absolute md:inset-x-0 md:top-1/2 md:-translate-y-1/2">
+            <span className="font-medium opacity-70">Powered by</span>
+            <a
+              href="https://thinkclub.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Thinkclub"
+              className="transition-opacity hover:opacity-80"
+            >
+              <Image
+                src="/images/powered.webp"
+                alt="Thinkclub"
+                width={256}
+                height={39}
+                className="h-5 w-auto select-none"
+              />
+            </a>
+          </div>
+
           <div className="text-center font-medium opacity-80">
             © {year} {siteConfig.fullName}. All rights reserved.
           </div>
