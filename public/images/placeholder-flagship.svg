@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Flagship event placeholder image">
+  <rect width="800" height="500" fill="#0f2557" />
+  <g stroke="#3b82f6" fill="none">
+    <g transform="translate(400 220)">
+      <circle r="120" stroke-width="6" />
+      <circle r="72" stroke="#60a5fa" stroke-width="4" />
+      <circle r="16" fill="#60a5fa" stroke="none" />
+      <path d="M 0 -138 L 0 -160 M 0 138 L 0 160 M -138 0 L -160 0 M 138 0 L 160 0" stroke-width="8" stroke-linecap="round" />
+    </g>
+    <path d="M 40 460 L 760 460" stroke-width="1" stroke-opacity="0.25" />
+    <path d="M 40 380 L 760 380" stroke-width="1" stroke-opacity="0.25" />
+  </g>
+  <text x="400" y="406" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#ffffff">Flagship — Manusys</text>
+  <text x="400" y="438" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#93c5fd">Replace with symposium imagery</text>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Event placeholder image">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e0e7ff" />
+      <stop offset="100%" stop-color="#eff6ff" />
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#c7d2fe" stroke-width="1" />
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)" />
+  <rect width="800" height="500" fill="url(#grid)" />
+  <g transform="translate(400 190)" stroke="#4338ca">
+    <rect x="-150" y="-100" width="300" height="200" rx="16" fill="none" stroke-width="6" />
+    <rect x="-130" y="-80" width="260" height="160" rx="10" fill="none" stroke="#818cf8" stroke-width="3" />
+    <circle cx="0" cy="0" r="30" fill="none" stroke-width="5" />
+    <path d="M -30 0 L 30 0 M 0 -30 L 0 30" stroke-width="5" stroke-linecap="round" />
+  </g>
+  <text x="400" y="360" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="#1e3a8a">Event banner placeholder</text>
+  <text x="400" y="390" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#64748b">Replace with event imagery</text>
+</svg>

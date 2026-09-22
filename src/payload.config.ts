@@ -7,6 +7,15 @@ import sharp from "sharp";
 
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
+import { Announcements } from "./collections/Announcements";
+import { Events } from "./collections/Events";
+import { OfficeBearers } from "./collections/OfficeBearers";
+import { Members } from "./collections/Members";
+import { Contact } from "./collections/Contact";
+import { cloudStoragePlugin } from "@payloadcms/plugin-cloud-storage";
+import { cloudinaryAdapter } from "./lib/cloudinaryAdapter";
+import { Domains } from "./collections/Domain";
+import { CommitteeMembers } from "./collections/CommitteeMembers";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -18,7 +27,17 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  collections: [
+    Users,
+    Media,
+    Announcements,
+    Events,
+    OfficeBearers,
+    Members,
+    Contact,
+    Domains,
+    CommitteeMembers
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
@@ -30,5 +49,14 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [],
+  plugins: [
+    cloudStoragePlugin({
+      collections: {
+        media: {
+          adapter: cloudinaryAdapter,
+          disableLocalStorage: true,
+        },
+      },
+    }),
+  ],
 });
