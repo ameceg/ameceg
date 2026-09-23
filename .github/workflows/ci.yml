@@ -16,7 +16,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+        PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
     steps:
       - name: Checkout repository
