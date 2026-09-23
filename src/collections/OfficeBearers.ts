@@ -79,6 +79,18 @@ export const OfficeBearers: CollectionConfig = {
           label: "Events Secretary",
           value: "events-secretary",
         },
+        {
+          label: "Head of Alumni Relations",
+          value: "head-of-alumni-relations",
+        },
+        {
+          label: "Junior Head of Alumni Relations",
+          value: "junior-head-of-alumni-relations",
+        },
+        {
+          label: "Junior Events Secretary",
+          value: "junior-events-secretary",
+        },
       ],
     },
 
