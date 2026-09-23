@@ -15,6 +15,9 @@ jobs:
   quality:
     runs-on: ubuntu-latest
 
+    env:
+      PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -31,7 +34,14 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+      - name: Check Payload secret
+        run: |
+          if [ -n "$PAYLOAD_SECRET" ]; then
+            echo "PAYLOAD_SECRET is available"
+          else
+            echo "PAYLOAD_SECRET is NOT available"
+            exit 1
+          fi
+
       - name: Build
         run: npm run build
-        env:
-          PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
