@@ -33,3 +33,5 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
