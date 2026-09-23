@@ -1,6 +1,7 @@
 'use client'
 
 import { ArrowUpRight, Menu, X } from 'lucide-react'
+import Link from 'next/link'
 import { useState } from 'react'
 
 import { Logo } from '@/components/layout/logo'
@@ -14,7 +15,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#hero" aria-label="AME — Association of Manufacturing Engineers, CEG" className="group flex items-center gap-2.5">
+        <Link href="/" aria-label="AME — Association of Manufacturing Engineers, CEG" className="group flex items-center gap-2.5">
           <Logo className="size-9 transition-transform duration-200 group-hover:scale-105" />
           <span className="flex items-baseline gap-2">
             <span className="text-base font-bold tracking-tight text-foreground">AME</span>
@@ -22,7 +23,7 @@ export function Navbar() {
               CEG
             </span>
           </span>
-        </a>
+        </Link>
 
         <nav aria-label="Primary" className="hidden md:block">
           <ul className="flex items-center gap-1">

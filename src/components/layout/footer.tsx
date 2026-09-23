@@ -43,7 +43,7 @@ export function Footer() {
               for engineers.
             </h2>
             <a
-              href="#contact"
+              href="/contact"
               className="group inline-flex w-fit items-center gap-2 rounded-full bg-gradient-to-r from-primary to-[#4038c8] px-6 py-3 text-sm font-bold text-white transition-transform duration-200 hover:scale-105 md:px-9 md:py-3.5 md:text-base"
             >
               <span className="whitespace-nowrap">Contact us</span>
@@ -132,19 +132,8 @@ export function Footer() {
         </div>
 
         <div className="relative mt-6 flex flex-col items-center justify-between gap-2 text-sm text-foreground/70 sm:mt-8 md:flex-row">
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="#hero"
-              className="whitespace-nowrap font-medium transition-colors hover:text-primary"
-            >
-              Privacy policy
-            </a>
-            <a
-              href="#hero"
-              className="whitespace-nowrap font-medium transition-colors hover:text-primary"
-            >
-              Terms &amp; conditions
-            </a>
+          <div className="text-center font-medium opacity-80">
+            © {year} {siteConfig.fullName}. All rights reserved.
           </div>
 
           <div className="flex items-center justify-center gap-2 md:absolute md:inset-x-0 md:top-1/2 md:-translate-y-1/2">

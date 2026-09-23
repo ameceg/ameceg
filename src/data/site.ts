@@ -15,17 +15,18 @@ export const siteConfig = {
   address: 'Department of Manufacturing Engineering, CEG, Anna University, Chennai',
   manusys: {
     label: 'Manusys',
-    href: 'https://manusys.ame.example',
+    href: '/manusys',
     description: 'The flagship national-level technical symposium of AME.',
   },
   nav: [
-    { label: 'Home', href: '#hero' },
-    { label: 'About', href: '#about' },
-    { label: 'Events', href: '#events' },
-    { label: 'Team', href: '#team' },
-    { label: 'Manusys', href: 'https://manusys.ame.example', external: true },
-    { label: 'Contact', href: '#contact' },
-  ] satisfies NavItem[],
+    { label: 'Home', href: '/' },
+    { label: 'About', href: '/about' },
+    { label: 'Events', href: '/events' },
+    { label: 'Team', href: '/team' },
+    { label: 'Manusys', href: '/manusys' },
+    { label: 'Contact', href: '/contact' },
+  ] as NavItem[],
+
   socials: [
     { label: 'LinkedIn', href: 'https://linkedin.com' },
     { label: 'Instagram', href: 'https://instagram.com' },
