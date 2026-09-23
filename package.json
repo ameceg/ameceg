@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" next dev --webpack",
+    "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" next build",
     "start": "next start",
     "lint": "eslint",
     "generate:types": "cross-env NODE_OPTIONS=\"--experimental-strip-types\" node node_modules/payload/bin.js generate:types",

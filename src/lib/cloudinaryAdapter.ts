@@ -123,6 +123,7 @@ export const cloudinaryAdapter = ({ prefix }: AdapterArgs) => ({
 
     return cloudinary.url(data.cloudinaryPublicId, {
       secure: true,
+      analytics: false,
       resource_type:
         data.cloudinaryResourceType === "video" ||
         data.cloudinaryResourceType === "raw"

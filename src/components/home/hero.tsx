@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Sparkles } from 'lucide-react'
 
 import { buttonVariants } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
@@ -9,94 +9,102 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden border-b border-border bg-background"
+      className="relative flex min-h-[85vh] items-center overflow-hidden bg-[#0A0C1B] text-slate-100 border-b border-slate-800/60"
     >
+      {/* Background Ambient Glows & Diagonal Lines */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute top-1/2 right-[10%] -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-blue-600/20 blur-[120px] sm:w-[800px] sm:h-[800px]" />
+        <div className="absolute top-1/2 right-[15%] -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-indigo-500/20 blur-[100px] sm:w-[500px] sm:h-[500px]" />
+        <div className="absolute -top-24 -left-24 w-[450px] h-[450px] rounded-full bg-blue-900/15 blur-[120px]" />
+        <div className="absolute -top-[20%] left-1/3 h-[140%] w-[1px] bg-gradient-to-b from-transparent via-white/10 to-transparent rotate-[35deg]" />
+        <div className="absolute -top-[20%] right-1/4 h-[140%] w-[1px] bg-gradient-to-b from-transparent via-white/5 to-transparent rotate-[35deg]" />
+      </div>
+
+      {/* Giant "AME" Watermark Typography */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-24 left-1/2 select-none whitespace-nowrap font-black leading-[0.8] tracking-tighter text-foreground/[0.04] lg:bottom-28"
-        style={{ fontSize: 'clamp(12rem, 28vw, 30rem)' }}
+        className="pointer-events-none absolute bottom-4 right-6 z-0 select-none font-black leading-none tracking-tighter text-slate-800/20 sm:bottom-8 sm:left-12 text-[18vw]"
       >
         AME
       </span>
 
-      <Container className="relative grid grid-cols-1 gap-14 pb-20 pt-16 sm:pt-24 lg:grid-cols-12 lg:items-center lg:gap-16 lg:pb-24 lg:pt-20">
-        <div className="lg:col-span-8">
-          <p className="inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.22em] text-foreground/50">
-            <span className="size-2 rotate-45 bg-primary" aria-hidden="true" />
-            {siteConfig.fullName}
-          </p>
+      <Container className="relative z-10 grid grid-cols-1 gap-10 py-16 lg:grid-cols-12 lg:items-center lg:gap-12 lg:py-20">
 
-          <h1 className="mt-7 text-4xl font-black leading-[1.02] tracking-tighter sm:text-6xl lg:text-[4.75rem]">
-            for manufacturing
-            <span className="block text-primary">engineering at CEG</span>
+        {/* Left Content Column */}
+        <div className="lg:col-span-7 xl:col-span-7">
+
+          {/* Status Badge */}
+          <div className="inline-flex items-center gap-3 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-widest text-blue-200 shadow-[0_0_20px_-5px_rgba(59,130,246,0.2)] backdrop-blur-md ring-1 ring-white/5">
+            <span className="relative flex size-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75" />
+              <span className="relative inline-flex size-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
+            </span>
+            <span>Association of Manufacturing Engineers</span>
+          </div>
+
+          {/* Headline - Added padding and safe line heights to prevent clipping */}
+          <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15]">
+            <span className="block text-slate-100">Shaping the future of</span>
+            <span className="block bg-blue-400 bg-clip-text text-transparent pb-3 pt-1">
+              Manufacturing
+            </span>
           </h1>
 
-          <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
-            {siteConfig.description} We run workshops, technical visits and events that put
-            manufacturing theory into practice.
+          {/* Description */}
+          <p className="mt-2 max-w-lg text-base leading-relaxed text-slate-300 sm:text-lg">
+            {siteConfig.description} Bridging the gap between academic theory and industrial excellence.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-6">
+          {/* Call to Action Buttons */}
+          <div className="mt-8 flex flex-wrap items-center gap-4 sm:gap-5">
             <a
               href="#about"
               className={buttonVariants({
                 variant: 'default',
                 size: 'lg',
-                className: 'group/cta h-11 gap-2.5 px-7',
+                className:
+                  'group/cta relative flex h-12 sm:h-14 items-center gap-2.5 rounded-xl border border-blue-500/30 bg-gradient-to-r from-blue-600 to-indigo-600 px-8 text-base font-semibold text-white shadow-[0_0_30px_-5px_rgba(37,99,235,0.4)] transition-all duration-300 hover:scale-[1.02] hover:border-blue-400/50 hover:from-blue-500 hover:to-indigo-500 hover:shadow-[0_0_40px_-5px_rgba(37,99,235,0.6)]',
               })}
             >
-              Explore AME
+              Discover AME
               <ArrowRight
-                className="size-4 transition-transform duration-200 group-hover/cta:translate-x-1"
+                className="size-4 transition-transform duration-300 group-hover/cta:translate-x-1"
                 aria-hidden="true"
               />
             </a>
+
             <a
               href="#team"
-              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-foreground transition-colors hover:text-primary"
+              className="group inline-flex h-12 sm:h-14 items-center gap-2.5 rounded-xl border border-slate-700/50 bg-slate-800/30 px-6 text-sm font-medium text-slate-300 backdrop-blur-sm transition-all duration-300 hover:border-slate-600 hover:bg-slate-800/80 hover:text-white"
             >
-              Meet the team
-              <ArrowRight
-                className="size-4 text-muted-foreground transition-all duration-200 group-hover:translate-x-1 group-hover:text-primary"
-                aria-hidden="true"
-              />
+              Meet the Board
             </a>
           </div>
         </div>
 
-        <div className="lg:col-span-4">
-          <div className="relative">
-            <figure className="group relative lg:-mt-24">
-              <div className="overflow-hidden rounded-2xl border border-border bg-muted transition-all duration-300 lg:group-hover:-rotate-[0.4deg] lg:group-hover:scale-[1.01]">
-                <Image
-                  src="/images/logo.png"
-                  alt="Photograph placeholder — manufacturing workshop at CEG"
-                  width={500}
-                  height={500}
-                  priority
-                  className="size-full transition-transform duration-700 ease-out lg:group-hover:scale-[1.04]"
-                />
-              </div>
-              <figcaption className="absolute bottom-5 left-5 inline-flex items-center gap-3 rounded-md bg-foreground px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-background">
-                <span className="size-1.5 rotate-45 bg-primary" aria-hidden="true" />
+        {/* Right Graphic/Logo Visual Column (Untouched) */}
+        <div className="lg:col-span-5 xl:col-span-5">
+          <div className="relative mx-auto max-w-md lg:max-w-none">
+
+            <div className="relative group">
+              <Image
+                src="/images/hero.png"
+                alt="AME Manufacturing Engineering Logo"
+                width={340}
+                height={340}
+                priority
+                className="relative z-10 size-auto max-h-72 object-contain filter drop-shadow-[0_10px_25px_rgba(59,130,246,0.35)] transition-transform duration-500 group-hover:scale-105"
+              />
+
+              <figcaption className="absolute -bottom-4 left-2 z-20 inline-flex items-center gap-2 rounded-lg border border-slate-700/60 bg-slate-950/80 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-slate-300 backdrop-blur-md">
+                <span className="size-1.5 rounded-full bg-blue-400" aria-hidden="true" />
                 Dept. of Manufacturing Engineering · CEG
               </figcaption>
-            </figure>
+            </div>
 
-            <a
-              href={siteConfig.manusys.href}
-              target="_blank"
-              rel="noreferrer"
-              className="group absolute -right-3 -top-5 hidden items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-xs font-semibold text-foreground shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:text-primary sm:inline-flex"
-            >
-              {siteConfig.manusys.label}
-              <ArrowUpRight
-                className="size-3.5 text-muted-foreground transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
-                aria-hidden="true"
-              />
-            </a>
           </div>
         </div>
+
       </Container>
     </section>
   )

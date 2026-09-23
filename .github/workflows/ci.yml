@@ -15,6 +15,14 @@ jobs:
   quality:
     runs-on: ubuntu-latest
 
+    env:
+        PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+        CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+        CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+        NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: ${{ secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,6 +38,15 @@ jobs:
 
       - name: Run ESLint
         run: npm run lint
+
+      - name: Check Payload secret
+        run: |
+          if [ -n "$PAYLOAD_SECRET" ]; then
+            echo "PAYLOAD_SECRET is available"
+          else
+            echo "PAYLOAD_SECRET is NOT available"
+            exit 1
+          fi
 
       - name: Build
         run: npm run build

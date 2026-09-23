@@ -258,7 +258,10 @@ export interface OfficeBearer {
     | 'assistant-secretary-male'
     | 'assistant-secretary-female'
     | 'student-treasurer'
-    | 'events-secretary';
+    | 'events-secretary'
+    | 'head-of-alumni-relations'
+    | 'junior-head-of-alumni-relations'
+    | 'junior-events-secretary';
   /**
    * Format: YYYY-YY, e.g. 2026-27
    */

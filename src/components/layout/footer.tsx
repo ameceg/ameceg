@@ -132,19 +132,8 @@ export function Footer() {
         </div>
 
         <div className="relative mt-6 flex flex-col items-center justify-between gap-2 text-sm text-foreground/70 sm:mt-8 md:flex-row">
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="#hero"
-              className="whitespace-nowrap font-medium transition-colors hover:text-primary"
-            >
-              Privacy policy
-            </a>
-            <a
-              href="#hero"
-              className="whitespace-nowrap font-medium transition-colors hover:text-primary"
-            >
-              Terms &amp; conditions
-            </a>
+          <div className="text-center font-medium opacity-80">
+            © {year} {siteConfig.fullName}. All rights reserved.
           </div>
 
           <div className="flex items-center justify-center gap-2 md:absolute md:inset-x-0 md:top-1/2 md:-translate-y-1/2">
